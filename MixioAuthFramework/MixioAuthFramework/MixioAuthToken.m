@@ -50,6 +50,9 @@
 + (MixioAuthToken *)loadFromStandardUserDefaults {
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	NSDictionary* dictionary = [defaults objectForKey:@"MixioAuthToken"];
+	if (!dictionary) {
+		return nil;
+	}
 	MixioAuthToken* oAuthToken = [[[MixioAuthToken alloc] init] autorelease];
 	oAuthToken.accessToken = [dictionary objectForKey:@"accessToken"];
 	oAuthToken.refreshToken = [dictionary objectForKey:@"refreshToken"];

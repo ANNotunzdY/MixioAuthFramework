@@ -17,8 +17,11 @@ NSString* const kMixioAuthRedirectURLString = @"https://mixi.jp/connect_authoriz
 
 @implementation MixioAuthSampleViewController
 
+@synthesize token;
+
 - (void)dealloc
 {
+	[token release];
     [super dealloc];
 }
 
@@ -38,9 +41,12 @@ NSString* const kMixioAuthRedirectURLString = @"https://mixi.jp/connect_authoriz
 {
     [super viewDidLoad];
 	
-	dispatch_async(dispatch_get_main_queue(), ^{
-		[self launchoAuthView:nil];
-	});
+	self.token = [MixioAuthToken loadFromStandardUserDefaults];
+	if (!self.token) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[self launchoAuthView:nil];
+		});
+	}
 }
 
 
