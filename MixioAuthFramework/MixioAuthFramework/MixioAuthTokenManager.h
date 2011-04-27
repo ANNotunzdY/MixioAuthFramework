@@ -15,4 +15,7 @@
 - (void)getAccessTokenWithAuthorizationCode:(NSString *)code consumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret
 								redirectURL:(NSURL *)aURL completionHandler:(void(^)(MixioAuthToken* oAuthToken, NSError *error))aCompletionHandler;
 
+- (void)getAccessTokenWithRefreshToken:(NSString *)refreshToken consumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret
+					 completionHandler:(void(^)(MixioAuthToken* oAuthToken, NSError *error))aCompletionHandler;
+
 @end

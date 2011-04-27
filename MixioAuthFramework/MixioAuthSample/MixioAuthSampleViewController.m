@@ -40,13 +40,10 @@ NSString* const kMixioAuthRedirectURLString = @"https://mixi.jp/connect_authoriz
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-	self.token = [MixioAuthToken loadFromStandardUserDefaults];
-	if (!self.token) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-			[self launchoAuthView:nil];
-		});
-	}
+		
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[self refresh:nil];
+	});
 }
 
 
@@ -72,11 +69,36 @@ NSString* const kMixioAuthRedirectURLString = @"https://mixi.jp/connect_authoriz
 			MixioAuthTokenManager* oAuthTokenManager = [[MixioAuthTokenManager alloc] init];
 			[oAuthTokenManager getAccessTokenWithAuthorizationCode:authorizationCode consumerKey:kMixioAuthConsumerKey consumerSecret:kMixioAuthConsumerSecret redirectURL:[NSURL URLWithString:kMixioAuthRedirectURLString] completionHandler:^(MixioAuthToken *oAuthToken, NSError *error) {
 				NSLog(@"%@", [oAuthToken description]);
-				[oAuthToken saveToStandardUserDefaults];
+				if (oAuthToken) {
+					self.token = oAuthToken;
+					[oAuthToken saveToStandardUserDefaults];
+				}
+				[oAuthTokenManager release];
 			}];
 		}
 		[self dismissModalViewControllerAnimated:YES];
 		[oAuthViewController release];
+	}];
+}
+
+- (IBAction)refresh:sender {
+	self.token = [MixioAuthToken loadFromStandardUserDefaults];
+	if (!self.token) {
+		[self launchoAuthView:nil];
+		return;
+	}
+	
+	MixioAuthTokenManager* oAuthTokenManager = [[MixioAuthTokenManager alloc] init];
+	[oAuthTokenManager getAccessTokenWithRefreshToken:self.token.refreshToken consumerKey:kMixioAuthConsumerKey consumerSecret:kMixioAuthConsumerSecret completionHandler:^(MixioAuthToken *oAuthToken, NSError *error) {
+		NSLog(@"%@", [oAuthToken description]);
+		if (oAuthToken) {
+			self.token = oAuthToken;
+			[oAuthToken saveToStandardUserDefaults];
+		} else {
+			[MixioAuthToken removeTokenFromUserDefaults];
+			[self launchoAuthView:nil];
+		}
+		[oAuthTokenManager release];
 	}];
 }
 

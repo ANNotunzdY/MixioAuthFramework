@@ -15,5 +15,6 @@
 @property (retain, nonatomic) MixioAuthToken* token;
 
 - (IBAction)launchoAuthView:sender;
+- (IBAction)refresh:sender;
 
 @end

@@ -60,4 +60,10 @@
 	return oAuthToken;
 }
 
++ (void)removeTokenFromUserDefaults {
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	[defaults removeObjectForKey:@"MixioAuthToken"];
+	[defaults synchronize];
+}
+
 @end
