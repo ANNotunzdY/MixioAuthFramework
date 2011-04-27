@@ -11,7 +11,7 @@
 
 @implementation MixioAuthToken
 
-@synthesize accessToken, refreshToken, expireDate;
+@synthesize accessToken, refreshToken, expireDate, consumerKey, consumerSecret;
 
 - (void)dealloc {
 	[accessToken release];
@@ -20,11 +20,13 @@
 	[super dealloc];
 }
 
-+ (MixioAuthToken *)oAuthTokenWithAccessToken:(NSString *)aAccessToken refreshToken:(NSString *)aRefreshToken expireInterval:(int)seconds {
++ (MixioAuthToken *)oAuthTokenWithAccessToken:(NSString *)aAccessToken refreshToken:(NSString *)aRefreshToken expireInterval:(int)seconds consumerKey:aConsumerKey consumerSecret:aConsumerSecret {
 	MixioAuthToken* oAuthToken = [[[MixioAuthToken alloc] init] autorelease];
 	oAuthToken.accessToken = aAccessToken;
 	oAuthToken.refreshToken = aRefreshToken;
 	oAuthToken.expireDate = [NSDate dateWithTimeIntervalSinceNow:seconds];
+	oAuthToken.consumerKey = aConsumerKey;
+	oAuthToken.consumerSecret = aConsumerSecret;
 	return oAuthToken;
 }
 
@@ -42,6 +44,8 @@
 	 accessToken, @"accessToken", 
 	 refreshToken, @"refreshToken",
 	 [NSNumber numberWithDouble:[expireDate timeIntervalSince1970]], @"expireDate",
+	 consumerKey, @"consumerKey",
+	 consumerSecret, @"consumerSecret",
 	 nil];
 	[defaults setObject:dictionary forKey:@"MixioAuthToken"];
 	[defaults synchronize];
@@ -57,6 +61,8 @@
 	oAuthToken.accessToken = [dictionary objectForKey:@"accessToken"];
 	oAuthToken.refreshToken = [dictionary objectForKey:@"refreshToken"];
 	oAuthToken.expireDate = [NSDate dateWithTimeIntervalSince1970:[[dictionary objectForKey:@"expireDate"] doubleValue]];
+	oAuthToken.consumerKey = [dictionary objectForKey:@"consumerKey"];
+	oAuthToken.consumerSecret = [dictionary objectForKey:@"consumerSecret"];
 	return oAuthToken;
 }
 

@@ -14,11 +14,13 @@ NSString* const kMixioAuthTokenRefreshURLString = @"https://secure.mixi-platform
 @interface MixioAuthTokenManager ()
 @property (copy, nonatomic) void (^completionHandler)(MixioAuthToken* oAuthToken, NSError *error);
 @property (retain, nonatomic) NSMutableData* receivedData;
+@property (retain, nonatomic) NSString* consumerKey;
+@property (retain, nonatomic) NSString* consumerSecret;
 @end
 
 @implementation MixioAuthTokenManager;
 
-@synthesize completionHandler, receivedData;
+@synthesize completionHandler, receivedData, consumerKey, consumerSecret;
 
 - (void)dealloc {
 	[completionHandler release];
@@ -26,7 +28,7 @@ NSString* const kMixioAuthTokenRefreshURLString = @"https://secure.mixi-platform
 	[super dealloc];
 }
 
-- (void)getAccessTokenWithAuthorizationCode:(NSString *)code consumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret
+- (void)getAccessTokenWithAuthorizationCode:(NSString *)code consumerKey:(NSString *)aConsumerKey consumerSecret:(NSString *)aConsumerSecret
 								redirectURL:(NSURL *)aURL completionHandler:(void(^)(MixioAuthToken* oAuthToken, NSError *error))aCompletionHandler {
 	
 	if (self.completionHandler) {
@@ -35,8 +37,11 @@ NSString* const kMixioAuthTokenRefreshURLString = @"https://secure.mixi-platform
 	}
 	
 	self.completionHandler = aCompletionHandler;
+	self.consumerKey = aConsumerKey;
+	self.consumerSecret = aConsumerSecret;
+	
 	NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kMixioAuthTokenRefreshURLString]];
-	NSString* bodyString = [NSString stringWithFormat:@"grant_type=authorization_code&client_id=%@&client_secret=%@&code=%@&redirect_uri=%@", consumerKey, consumerSecret, code, [aURL absoluteString]];
+	NSString* bodyString = [NSString stringWithFormat:@"grant_type=authorization_code&client_id=%@&client_secret=%@&code=%@&redirect_uri=%@", aConsumerKey, aConsumerSecret, code, [aURL absoluteString]];
 	[request setHTTPBody:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
 	[request setHTTPMethod:@"POST"];
 	
@@ -74,7 +79,7 @@ NSString* const kMixioAuthTokenRefreshURLString = @"https://secure.mixi-platform
 	
 	if (self.completionHandler) {
 		if ([jsonDictionary objectForKey:@"access_token"]) {
-			MixioAuthToken* token = [MixioAuthToken oAuthTokenWithAccessToken:[jsonDictionary objectForKey:@"access_token"] refreshToken:[jsonDictionary objectForKey:@"refresh_token"] expireInterval:[[jsonDictionary objectForKey:@"expires_in"] intValue]];
+			MixioAuthToken* token = [MixioAuthToken oAuthTokenWithAccessToken:[jsonDictionary objectForKey:@"access_token"] refreshToken:[jsonDictionary objectForKey:@"refresh_token"] expireInterval:[[jsonDictionary objectForKey:@"expires_in"] intValue] consumerKey:self.consumerKey consumerSecret:self.consumerSecret];
 			completionHandler(token, nil);
 		} else {
 			completionHandler(nil, [NSError errorWithDomain:@"MixioAuthTokenManagerErrorDomain" code:0 userInfo:[NSDictionary dictionaryWithObject:receiveString forKey:NSLocalizedDescriptionKey]]);
@@ -86,7 +91,7 @@ NSString* const kMixioAuthTokenRefreshURLString = @"https://secure.mixi-platform
 	self.receivedData = nil;
 }
 
-- (void)getAccessTokenWithRefreshToken:(NSString *)refreshToken consumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret
+- (void)getAccessTokenWithRefreshToken:(NSString *)refreshToken consumerKey:(NSString *)aConsumerKey consumerSecret:(NSString *)aConsumerSecret
 					 completionHandler:(void(^)(MixioAuthToken* oAuthToken, NSError *error))aCompletionHandler {
 	
 	if (self.completionHandler) {
@@ -95,8 +100,11 @@ NSString* const kMixioAuthTokenRefreshURLString = @"https://secure.mixi-platform
 	}
 	
 	self.completionHandler = aCompletionHandler;
+	self.consumerKey = aConsumerKey;
+	self.consumerSecret = aConsumerSecret;
+	
 	NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kMixioAuthTokenRefreshURLString]];
-	NSString* bodyString = [NSString stringWithFormat:@"grant_type=refresh_token&client_id=%@&client_secret=%@&refresh_token=%@", consumerKey, consumerSecret, refreshToken];
+	NSString* bodyString = [NSString stringWithFormat:@"grant_type=refresh_token&client_id=%@&client_secret=%@&refresh_token=%@", aConsumerKey, aConsumerSecret, refreshToken];
 	[request setHTTPBody:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
 	[request setHTTPMethod:@"POST"];
 	
@@ -109,6 +117,10 @@ NSString* const kMixioAuthTokenRefreshURLString = @"https://secure.mixi-platform
 			completionHandler(nil, [NSError errorWithDomain:@"MixioAuthTokenManagerErrorDomain" code:1 userInfo:nil]);
 		}
 	}
+}
+
+- (void)refreshToken:(MixioAuthToken *)token completionHandler:(void(^)(MixioAuthToken* oAuthToken, NSError *error))aCompletionHandler {
+	[self getAccessTokenWithRefreshToken:token.refreshToken consumerKey:token.consumerKey consumerSecret:token.consumerSecret completionHandler:aCompletionHandler];
 }
 
 @end

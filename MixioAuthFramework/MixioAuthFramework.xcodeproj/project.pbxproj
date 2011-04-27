@@ -77,6 +77,9 @@
 		007803281368680B00CB12E6 /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0078030C1368680B00CB12E6 /* SBJsonWriter.h */; };
 		007803291368680B00CB12E6 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0078030D1368680B00CB12E6 /* SBJsonWriter.m */; };
 		0078032A1368680B00CB12E6 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0078030D1368680B00CB12E6 /* SBJsonWriter.m */; };
+		0078032D13687FF300CB12E6 /* MixioAuthConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 0078032B13687FF200CB12E6 /* MixioAuthConnection.h */; };
+		0078032E13687FF300CB12E6 /* MixioAuthConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0078032C13687FF200CB12E6 /* MixioAuthConnection.m */; };
+		0078032F13687FF300CB12E6 /* MixioAuthConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0078032C13687FF200CB12E6 /* MixioAuthConnection.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +163,8 @@
 		0078030B1368680B00CB12E6 /* SBJsonTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonTokeniser.m; sourceTree = "<group>"; };
 		0078030C1368680B00CB12E6 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		0078030D1368680B00CB12E6 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		0078032B13687FF200CB12E6 /* MixioAuthConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixioAuthConnection.h; sourceTree = "<group>"; };
+		0078032C13687FF200CB12E6 /* MixioAuthConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixioAuthConnection.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +255,8 @@
 				0078025A13682B9100CB12E6 /* MixioAuthTokenManager.m */,
 				0078025E13683A7F00CB12E6 /* MixioAuthToken.h */,
 				0078025F13683A7F00CB12E6 /* MixioAuthToken.m */,
+				0078032B13687FF200CB12E6 /* MixioAuthConnection.h */,
+				0078032C13687FF200CB12E6 /* MixioAuthConnection.m */,
 				007802F91368680A00CB12E6 /* JSON */,
 			);
 			path = MixioAuthFramework;
@@ -384,6 +391,7 @@
 				007803221368680B00CB12E6 /* SBJsonStreamWriterState.h in Headers */,
 				007803251368680B00CB12E6 /* SBJsonTokeniser.h in Headers */,
 				007803281368680B00CB12E6 /* SBJsonWriter.h in Headers */,
+				0078032D13687FF300CB12E6 /* MixioAuthConnection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,6 +582,7 @@
 				007803231368680B00CB12E6 /* SBJsonStreamWriterState.m in Sources */,
 				007803261368680B00CB12E6 /* SBJsonTokeniser.m in Sources */,
 				007803291368680B00CB12E6 /* SBJsonWriter.m in Sources */,
+				0078032E13687FF300CB12E6 /* MixioAuthConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +603,7 @@
 				007803241368680B00CB12E6 /* SBJsonStreamWriterState.m in Sources */,
 				007803271368680B00CB12E6 /* SBJsonTokeniser.m in Sources */,
 				0078032A1368680B00CB12E6 /* SBJsonWriter.m in Sources */,
+				0078032F13687FF300CB12E6 /* MixioAuthConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

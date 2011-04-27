@@ -14,8 +14,10 @@
 @property (nonatomic, retain) NSString* accessToken;
 @property (nonatomic, retain) NSString* refreshToken;
 @property (nonatomic, retain) NSDate* expireDate;
+@property (nonatomic, retain) NSString* consumerKey;
+@property (nonatomic, retain) NSString* consumerSecret;
 
-+ (MixioAuthToken *)oAuthTokenWithAccessToken:(NSString *)aAccessToken refreshToken:(NSString *)aRefreshToken expireInterval:(int)seconds;
++ (MixioAuthToken *)oAuthTokenWithAccessToken:(NSString *)aAccessToken refreshToken:(NSString *)aRefreshToken expireInterval:(int)seconds consumerKey:aConsumerKey consumerSecret:aConsumerSecret;
 - (void)saveToStandardUserDefaults;
 + (MixioAuthToken *)loadFromStandardUserDefaults;
 + (void)removeTokenFromUserDefaults;

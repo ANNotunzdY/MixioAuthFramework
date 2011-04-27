@@ -12,10 +12,11 @@
 @interface MixioAuthTokenManager : NSObject {
 }
 
-- (void)getAccessTokenWithAuthorizationCode:(NSString *)code consumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret
+- (void)getAccessTokenWithAuthorizationCode:(NSString *)code consumerKey:(NSString *)aConsumerKey consumerSecret:(NSString *)aConsumerSecret
 								redirectURL:(NSURL *)aURL completionHandler:(void(^)(MixioAuthToken* oAuthToken, NSError *error))aCompletionHandler;
 
-- (void)getAccessTokenWithRefreshToken:(NSString *)refreshToken consumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret
+- (void)getAccessTokenWithRefreshToken:(NSString *)refreshToken consumerKey:(NSString *)aConsumerKey consumerSecret:(NSString *)aConsumerSecret
 					 completionHandler:(void(^)(MixioAuthToken* oAuthToken, NSError *error))aCompletionHandler;
+- (void)refreshToken:(MixioAuthToken *)token completionHandler:(void(^)(MixioAuthToken* oAuthToken, NSError *error))aCompletionHandler;
 
 @end

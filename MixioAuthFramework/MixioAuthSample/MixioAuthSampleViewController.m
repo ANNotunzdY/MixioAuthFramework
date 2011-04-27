@@ -9,10 +9,12 @@
 #import "MixioAuthSampleViewController.h"
 #import "MixioAuthViewController.h"
 #import "MixioAuthTokenManager.h"
+#import "MixioAuthConnection.h"
+#import "JSON.h"
 
 NSString* const kMixioAuthConsumerKey = @"66ba941cd0a4a3804a15";
 NSString* const kMixioAuthConsumerSecret = @"9ae2112e7b14cffe1acf29b0a10c74acd7245a2b";
-NSString* const kMixioAuthURLString = @"https://mixi.jp/connect_authorize.pl?client_id=66ba941cd0a4a3804a15&response_type=code&scope=r_profile&display=touch";
+NSString* const kMixioAuthURLString = @"https://mixi.jp/connect_authorize.pl?client_id=66ba941cd0a4a3804a15&response_type=code&scope=r_profile%20r_message%20w_message%20r_voice%20w_voice&display=touch";
 NSString* const kMixioAuthRedirectURLString = @"https://mixi.jp/connect_authorize_success.html";
 
 @implementation MixioAuthSampleViewController
@@ -99,6 +101,25 @@ NSString* const kMixioAuthRedirectURLString = @"https://mixi.jp/connect_authoriz
 			[self launchoAuthView:nil];
 		}
 		[oAuthTokenManager release];
+	}];
+}
+
+- (IBAction)getMyProfile:sender {
+	MixioAuthConnection* connection = [[MixioAuthConnection alloc] init];
+	[connection connectToURL:[NSURL URLWithString:@"http://api.mixi-platform.com/2/people/@me/@self"] token:self.token refreshingHandler:^(MixioAuthToken *oAuthToken) {
+			NSLog(@"%@", [oAuthToken description]);
+			if (oAuthToken) {
+				self.token = oAuthToken;
+			} else {
+				self.token = nil;
+			}
+	} completionHandler:^(NSString *receivedString, NSError *error) {
+		NSDictionary* dictionary = [receivedString JSONValue];
+		if (dictionary) {
+			NSLog(@"%@", [dictionary description]);
+		} else {
+			NSLog(@"Profile Get Failed.");
+		}
 	}];
 }
 

@@ -16,5 +16,6 @@
 
 - (IBAction)launchoAuthView:sender;
 - (IBAction)refresh:sender;
+- (IBAction)getMyProfile:sender;
 
 @end
