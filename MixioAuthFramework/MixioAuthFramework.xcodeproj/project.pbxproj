@@ -18,7 +18,6 @@
 		007801E91368178300CB12E6 /* MixioAuthViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 007801E61368178300CB12E6 /* MixioAuthViewController.h */; };
 		007801EA1368178300CB12E6 /* MixioAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007801E71368178300CB12E6 /* MixioAuthViewController.m */; };
 		007801EB1368178300CB12E6 /* MixioAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007801E71368178300CB12E6 /* MixioAuthViewController.m */; };
-		007801EC1368178300CB12E6 /* MixioAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 007801E81368178300CB12E6 /* MixioAuthViewController.xib */; };
 		007801F3136818C000CB12E6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007801C1136813E900CB12E6 /* UIKit.framework */; };
 		007801F4136818C000CB12E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007801B6136813E900CB12E6 /* Foundation.framework */; };
 		007801F5136818C000CB12E6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007801C4136813E900CB12E6 /* CoreGraphics.framework */; };
@@ -35,6 +34,18 @@
 		0078021E136818C100CB12E6 /* MixioAuthSampleTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 0078021D136818C100CB12E6 /* MixioAuthSampleTests.h */; };
 		00780220136818C100CB12E6 /* MixioAuthSampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0078021F136818C100CB12E6 /* MixioAuthSampleTests.m */; };
 		00780227136818D900CB12E6 /* libMixioAuthFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 007801B3136813E900CB12E6 /* libMixioAuthFramework.a */; };
+		00780238136820C600CB12E6 /* MixioAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00780235136820C600CB12E6 /* MixioAuthViewController.xib */; };
+		00780239136820C600CB12E6 /* MixioAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00780235136820C600CB12E6 /* MixioAuthViewController.xib */; };
+		0078023A136820C600CB12E6 /* MixioAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00780235136820C600CB12E6 /* MixioAuthViewController.xib */; };
+		0078023B136820C600CB12E6 /* NavBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 00780236136820C600CB12E6 /* NavBack.png */; };
+		0078023C136820C600CB12E6 /* NavBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 00780236136820C600CB12E6 /* NavBack.png */; };
+		0078023D136820C600CB12E6 /* NavBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 00780236136820C600CB12E6 /* NavBack.png */; };
+		0078023E136820C600CB12E6 /* NavForward.png in Resources */ = {isa = PBXBuildFile; fileRef = 00780237136820C600CB12E6 /* NavForward.png */; };
+		0078023F136820C600CB12E6 /* NavForward.png in Resources */ = {isa = PBXBuildFile; fileRef = 00780237136820C600CB12E6 /* NavForward.png */; };
+		00780240136820C600CB12E6 /* NavForward.png in Resources */ = {isa = PBXBuildFile; fileRef = 00780237136820C600CB12E6 /* NavForward.png */; };
+		0078025B13682B9100CB12E6 /* MixioAuthTokenManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 0078025913682B9100CB12E6 /* MixioAuthTokenManager.h */; };
+		0078025C13682B9100CB12E6 /* MixioAuthTokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0078025A13682B9100CB12E6 /* MixioAuthTokenManager.m */; };
+		0078025D13682B9100CB12E6 /* MixioAuthTokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0078025A13682B9100CB12E6 /* MixioAuthTokenManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,7 +86,6 @@
 		007801D2136813E900CB12E6 /* MixioAuthFrameworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MixioAuthFrameworkTests.m; sourceTree = "<group>"; };
 		007801E61368178300CB12E6 /* MixioAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixioAuthViewController.h; sourceTree = "<group>"; };
 		007801E71368178300CB12E6 /* MixioAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixioAuthViewController.m; sourceTree = "<group>"; };
-		007801E81368178300CB12E6 /* MixioAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MixioAuthViewController.xib; sourceTree = "<group>"; };
 		007801F1136818C000CB12E6 /* MixioAuthSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MixioAuthSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		007801F8136818C100CB12E6 /* MixioAuthSample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MixioAuthSample-Info.plist"; sourceTree = "<group>"; };
 		007801FA136818C100CB12E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -93,6 +103,11 @@
 		0078021C136818C100CB12E6 /* MixioAuthSampleTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MixioAuthSampleTests-Prefix.pch"; sourceTree = "<group>"; };
 		0078021D136818C100CB12E6 /* MixioAuthSampleTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixioAuthSampleTests.h; sourceTree = "<group>"; };
 		0078021F136818C100CB12E6 /* MixioAuthSampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MixioAuthSampleTests.m; sourceTree = "<group>"; };
+		00780235136820C600CB12E6 /* MixioAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MixioAuthViewController.xib; sourceTree = "<group>"; };
+		00780236136820C600CB12E6 /* NavBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBack.png; sourceTree = "<group>"; };
+		00780237136820C600CB12E6 /* NavForward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavForward.png; sourceTree = "<group>"; };
+		0078025913682B9100CB12E6 /* MixioAuthTokenManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixioAuthTokenManager.h; sourceTree = "<group>"; };
+		0078025A13682B9100CB12E6 /* MixioAuthTokenManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixioAuthTokenManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +161,7 @@
 				007801C9136813E900CB12E6 /* MixioAuthFrameworkTests */,
 				007801F6136818C000CB12E6 /* MixioAuthSample */,
 				00780216136818C100CB12E6 /* MixioAuthSampleTests */,
+				00780234136820C600CB12E6 /* Resources */,
 				007801B5136813E900CB12E6 /* Frameworks */,
 				007801B4136813E900CB12E6 /* Products */,
 			);
@@ -178,7 +194,8 @@
 				007801B9136813E900CB12E6 /* Supporting Files */,
 				007801E61368178300CB12E6 /* MixioAuthViewController.h */,
 				007801E71368178300CB12E6 /* MixioAuthViewController.m */,
-				007801E81368178300CB12E6 /* MixioAuthViewController.xib */,
+				0078025913682B9100CB12E6 /* MixioAuthTokenManager.h */,
+				0078025A13682B9100CB12E6 /* MixioAuthTokenManager.m */,
 			);
 			path = MixioAuthFramework;
 			sourceTree = "<group>";
@@ -256,6 +273,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		00780234136820C600CB12E6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				00780235136820C600CB12E6 /* MixioAuthViewController.xib */,
+				00780236136820C600CB12E6 /* NavBack.png */,
+				00780237136820C600CB12E6 /* NavForward.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -264,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				007801E91368178300CB12E6 /* MixioAuthViewController.h in Headers */,
+				0078025B13682B9100CB12E6 /* MixioAuthTokenManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,7 +403,9 @@
 			files = (
 				007801CE136813E900CB12E6 /* InfoPlist.strings in Resources */,
 				007801D1136813E900CB12E6 /* MixioAuthFrameworkTests.h in Resources */,
-				007801EC1368178300CB12E6 /* MixioAuthViewController.xib in Resources */,
+				00780238136820C600CB12E6 /* MixioAuthViewController.xib in Resources */,
+				0078023B136820C600CB12E6 /* NavBack.png in Resources */,
+				0078023E136820C600CB12E6 /* NavForward.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +416,9 @@
 				007801FB136818C100CB12E6 /* InfoPlist.strings in Resources */,
 				00780204136818C100CB12E6 /* MainWindow.xib in Resources */,
 				0078020A136818C100CB12E6 /* MixioAuthSampleViewController.xib in Resources */,
+				00780239136820C600CB12E6 /* MixioAuthViewController.xib in Resources */,
+				0078023C136820C600CB12E6 /* NavBack.png in Resources */,
+				0078023F136820C600CB12E6 /* NavForward.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,6 +428,9 @@
 			files = (
 				0078021B136818C100CB12E6 /* InfoPlist.strings in Resources */,
 				0078021E136818C100CB12E6 /* MixioAuthSampleTests.h in Resources */,
+				0078023A136820C600CB12E6 /* MixioAuthViewController.xib in Resources */,
+				0078023D136820C600CB12E6 /* NavBack.png in Resources */,
+				00780240136820C600CB12E6 /* NavForward.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +471,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				007801EA1368178300CB12E6 /* MixioAuthViewController.m in Sources */,
+				0078025C13682B9100CB12E6 /* MixioAuthTokenManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +481,7 @@
 			files = (
 				007801D3136813E900CB12E6 /* MixioAuthFrameworkTests.m in Sources */,
 				007801EB1368178300CB12E6 /* MixioAuthViewController.m in Sources */,
+				0078025D13682B9100CB12E6 /* MixioAuthTokenManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
