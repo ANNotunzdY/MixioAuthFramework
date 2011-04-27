@@ -36,4 +36,15 @@
 			 nil] description];
 }
 
+- (void)saveToStandardUserDefaults {
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSDictionary* dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+	 accessToken, @"accessToken", 
+	 refreshToken, @"refreshToken",
+	 [expireDate description], @"expireDate",
+	 nil];
+	[defaults setObject:dictionary forKey:@"MixioAuthToken"];
+	[defaults synchronize];
+}
+
 @end

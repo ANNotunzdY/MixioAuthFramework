@@ -95,7 +95,6 @@
 	
 	if ([[webView.request.URL absoluteString] 
 		 rangeOfString:[self.redirectURL absoluteString]].location == 0) {
-		NSLog(@"Finish Loaded");
 		NSArray* components = [[webView.request.URL absoluteString] componentsSeparatedByString:@"code="];
 		if ([components count] < 2) {
 			if (self.completionHandler) {

@@ -11,7 +11,7 @@
 #import "MixioAuthTokenManager.h"
 
 NSString* const kMixioAuthConsumerKey = @"66ba941cd0a4a3804a15";
-NSString* const kMixioAuthConsumerSecret = @"d043e40164a463164558e03081a4bd01ecca1a86";
+NSString* const kMixioAuthConsumerSecret = @"9ae2112e7b14cffe1acf29b0a10c74acd7245a2b";
 NSString* const kMixioAuthURLString = @"https://mixi.jp/connect_authorize.pl?client_id=66ba941cd0a4a3804a15&response_type=code&scope=r_profile&display=touch";
 NSString* const kMixioAuthRedirectURLString = @"https://mixi.jp/connect_authorize_success.html";
 
