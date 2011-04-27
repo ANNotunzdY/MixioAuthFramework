@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MixioAuthViewController : UIViewController <UIWebViewDelegate> {
-	IBOutlet UIWebView* webView;
+	IBOutlet UIWebView* browserView;
 	IBOutlet UIView* loadingView;
 	IBOutlet UIActivityIndicatorView* indicator;
 }

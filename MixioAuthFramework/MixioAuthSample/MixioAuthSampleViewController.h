@@ -12,4 +12,6 @@
     
 }
 
+- (IBAction)launchoAuthView:sender;
+
 @end

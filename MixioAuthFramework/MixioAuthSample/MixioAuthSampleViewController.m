@@ -8,8 +8,10 @@
 
 #import "MixioAuthSampleViewController.h"
 #import "MixioAuthViewController.h"
+#import "MixioAuthTokenManager.h"
 
 NSString* const kMixioAuthConsumerKey = @"66ba941cd0a4a3804a15";
+NSString* const kMixioAuthConsumerSecret = @"d043e40164a463164558e03081a4bd01ecca1a86";
 NSString* const kMixioAuthURLString = @"https://mixi.jp/connect_authorize.pl?client_id=66ba941cd0a4a3804a15&response_type=code&scope=r_profile&display=touch";
 NSString* const kMixioAuthRedirectURLString = @"https://mixi.jp/connect_authorize_success.html";
 
@@ -37,13 +39,7 @@ NSString* const kMixioAuthRedirectURLString = @"https://mixi.jp/connect_authoriz
     [super viewDidLoad];
 	
 	dispatch_async(dispatch_get_main_queue(), ^{
-		MixioAuthViewController* oAuthViewController = [[MixioAuthViewController alloc] init];
-		[self presentModalViewController:oAuthViewController animated:YES];
-		[oAuthViewController oAuthWithURL:[NSURL URLWithString:kMixioAuthURLString] redirectURL:[NSURL URLWithString:kMixioAuthRedirectURLString] completionHandler:^(NSString *authorizationCode, NSError *error) {
-			NSLog(@"Authorization Code: %@", authorizationCode);
-			[self dismissModalViewControllerAnimated:YES];
-			[oAuthViewController release];
-		}];
+		[self launchoAuthView:nil];
 	});
 }
 
@@ -59,6 +55,22 @@ NSString* const kMixioAuthRedirectURLString = @"https://mixi.jp/connect_authoriz
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (IBAction)launchoAuthView:sender {
+	MixioAuthViewController* oAuthViewController = [[MixioAuthViewController alloc] init];
+	[self presentModalViewController:oAuthViewController animated:YES];
+	[oAuthViewController oAuthWithURL:[NSURL URLWithString:kMixioAuthURLString] redirectURL:[NSURL URLWithString:kMixioAuthRedirectURLString] completionHandler:^(NSString *authorizationCode, NSError *error) {
+		NSLog(@"Authorization Code: %@", authorizationCode);
+		if (authorizationCode) {
+			MixioAuthTokenManager* oAuthTokenManager = [[MixioAuthTokenManager alloc] init];
+			[oAuthTokenManager getAccessTokenWithAuthorizationCode:authorizationCode consumerKey:kMixioAuthConsumerKey consumerSecret:kMixioAuthConsumerSecret redirectURL:[NSURL URLWithString:kMixioAuthRedirectURLString] completionHandler:^(MixioAuthToken *oAuthToken, NSError *error) {
+				NSLog(@"%@", [oAuthToken description]);
+			}];
+		}
+		[self dismissModalViewControllerAnimated:YES];
+		[oAuthViewController release];
+	}];
 }
 
 @end
