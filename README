@@ -1,0 +1,17 @@
+MixioAuthFramework
+
+(C)2011 Takayoshi Sato.
+Licensed under Apache License 2.0.
+
+-----
+
+If you use this library, please add the -all_load option to the Other Linker Flags.
+More Info:
+http://stackoverflow.com/questions/1147676/categories-in-static-library-for-iphone-device-3-0
+
+-----
+
+This library inludes these libraries.
+
+json-framework by Stig Brautaset
+https://github.com/stig/json-framework
