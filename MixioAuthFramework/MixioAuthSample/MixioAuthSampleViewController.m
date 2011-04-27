@@ -39,8 +39,8 @@ NSString* const kMixioAuthRedirectURLString = @"https://mixi.jp/connect_authoriz
 	dispatch_async(dispatch_get_main_queue(), ^{
 		MixioAuthViewController* oAuthViewController = [[MixioAuthViewController alloc] init];
 		[self presentModalViewController:oAuthViewController animated:YES];
-		[oAuthViewController oAuthWithURL:[NSURL URLWithString:kMixioAuthURLString] redirectURL:[NSURL URLWithString:kMixioAuthRedirectURLString] completionHandler:^(NSString *accessToken, NSError *error) {
-			NSLog(@"Access Token: %@", accessToken);
+		[oAuthViewController oAuthWithURL:[NSURL URLWithString:kMixioAuthURLString] redirectURL:[NSURL URLWithString:kMixioAuthRedirectURLString] completionHandler:^(NSString *authorizationCode, NSError *error) {
+			NSLog(@"Authorization Code: %@", authorizationCode);
 			[self dismissModalViewControllerAnimated:YES];
 			[oAuthViewController release];
 		}];

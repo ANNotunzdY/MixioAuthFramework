@@ -14,7 +14,7 @@
 	IBOutlet UIActivityIndicatorView* indicator;
 }
 
-- (void)oAuthWithURL:(NSURL *)aURL redirectURL:(NSURL *)aRedirectURL completionHandler:(void(^)(NSString *accessToken, NSError *error))aCompletionHandler;
+- (void)oAuthWithURL:(NSURL *)aURL redirectURL:(NSURL *)aRedirectURL completionHandler:(void(^)(NSString *authorizationCode, NSError *error))aCompletionHandler;
 
 - (IBAction)close:sender;
 - (void)showIndicator;

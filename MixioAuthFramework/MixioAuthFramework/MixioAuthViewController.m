@@ -9,7 +9,7 @@
 #import "MixioAuthViewController.h"
 
 @interface MixioAuthViewController ()
-@property (retain, nonatomic) void (^completionHandler)(NSString *accessToken, NSError *error);
+@property (retain, nonatomic) void (^completionHandler)(NSString *authorizationCode, NSError *error);
 @property (retain, nonatomic) NSURL* redirectURL;
 @end
 
