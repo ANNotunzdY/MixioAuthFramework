@@ -66,6 +66,7 @@ NSString* const kMixioAuthRedirectURLString = @"https://mixi.jp/connect_authoriz
 			MixioAuthTokenManager* oAuthTokenManager = [[MixioAuthTokenManager alloc] init];
 			[oAuthTokenManager getAccessTokenWithAuthorizationCode:authorizationCode consumerKey:kMixioAuthConsumerKey consumerSecret:kMixioAuthConsumerSecret redirectURL:[NSURL URLWithString:kMixioAuthRedirectURLString] completionHandler:^(MixioAuthToken *oAuthToken, NSError *error) {
 				NSLog(@"%@", [oAuthToken description]);
+				[oAuthToken saveToStandardUserDefaults];
 			}];
 		}
 		[self dismissModalViewControllerAnimated:YES];

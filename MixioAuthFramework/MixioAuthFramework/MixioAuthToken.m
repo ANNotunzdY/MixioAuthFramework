@@ -41,10 +41,20 @@
 	NSDictionary* dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
 	 accessToken, @"accessToken", 
 	 refreshToken, @"refreshToken",
-	 [expireDate description], @"expireDate",
+	 [NSNumber numberWithDouble:[expireDate timeIntervalSince1970]], @"expireDate",
 	 nil];
 	[defaults setObject:dictionary forKey:@"MixioAuthToken"];
 	[defaults synchronize];
+}
+
++ (MixioAuthToken *)loadFromStandardUserDefaults {
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSDictionary* dictionary = [defaults objectForKey:@"MixioAuthToken"];
+	MixioAuthToken* oAuthToken = [[[MixioAuthToken alloc] init] autorelease];
+	oAuthToken.accessToken = [dictionary objectForKey:@"accessToken"];
+	oAuthToken.refreshToken = [dictionary objectForKey:@"refreshToken"];
+	oAuthToken.expireDate = [NSDate dateWithTimeIntervalSince1970:[[dictionary objectForKey:@"expireDate"] doubleValue]];
+	return oAuthToken;
 }
 
 @end

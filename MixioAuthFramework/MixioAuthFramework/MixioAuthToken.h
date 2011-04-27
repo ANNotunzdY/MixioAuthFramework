@@ -17,5 +17,6 @@
 
 + (MixioAuthToken *)oAuthTokenWithAccessToken:(NSString *)aAccessToken refreshToken:(NSString *)aRefreshToken expireInterval:(int)seconds;
 - (void)saveToStandardUserDefaults;
++ (MixioAuthToken *)loadFromStandardUserDefaults;
 
 @end
