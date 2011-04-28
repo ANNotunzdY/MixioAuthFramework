@@ -1,13 +1,21 @@
-MixioAuthFramework
+Mixio Auth Framework
+(べ、べつにmixiのために作ったわけじゃないんだからねっ//)
 
 (C)2011 Takayoshi Sato.
 Licensed under Apache License 2.0.
 
------
-
 If you use this library, please add the -all_load option to the Other Linker Flags.
 More Info:
 http://stackoverflow.com/questions/1147676/categories-in-static-library-for-iphone-device-3-0
+
+-----
+
+Reference Links:
+The OAuth 2.0 Protocol
+http://openid-foundation-japan.github.com/draft-ietf-oauth-v2.ja.html
+
+mixi Connect << mixi Developer Center
+http://developer.mixi.co.jp/connect
 
 -----
 
