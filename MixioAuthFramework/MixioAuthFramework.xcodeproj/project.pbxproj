@@ -791,6 +791,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MixioAuthSample/MixioAuthSample-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "MixioAuthSample/MixioAuthSample-Info.plist";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -806,6 +807,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MixioAuthSample/MixioAuthSample-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "MixioAuthSample/MixioAuthSample-Info.plist";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-all_load";
@@ -878,6 +880,7 @@
 				007801D8136813E900CB12E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		007801D9136813E900CB12E6 /* Build configuration list for PBXNativeTarget "MixioAuthFrameworkTests" */ = {
 			isa = XCConfigurationList;
@@ -886,6 +889,7 @@
 				007801DB136813E900CB12E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		00780221136818C100CB12E6 /* Build configuration list for PBXNativeTarget "MixioAuthSample" */ = {
 			isa = XCConfigurationList;
@@ -894,6 +898,7 @@
 				00780223136818C100CB12E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		00780224136818C100CB12E6 /* Build configuration list for PBXNativeTarget "MixioAuthSampleTests" */ = {
 			isa = XCConfigurationList;
@@ -902,6 +907,7 @@
 				00780226136818C100CB12E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
