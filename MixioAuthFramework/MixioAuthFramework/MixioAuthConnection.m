@@ -13,24 +13,30 @@
 @property (copy, nonatomic) void (^completionHandler)(NSString* receivedString, NSError *error);
 @property (copy, nonatomic) void(^refreshHandler)(MixioAuthToken *oAuthToken, void(^refreshCompletionHandler)(MixioAuthToken *oAuthToken, NSError* error));
 @property (retain, nonatomic) MixioAuthToken* currentToken;
-@property (retain, nonatomic) NSURL* currentURL;
+@property (retain, nonatomic) NSMutableURLRequest* currentURLRequest;
 @property (retain, nonatomic) NSMutableData* receivedData;
 @end
 
 @implementation MixioAuthConnection
 
-@synthesize completionHandler, refreshHandler, receivedData, currentToken, currentURL;
+@synthesize completionHandler, refreshHandler, receivedData, currentToken, currentURLRequest;
 
 - (void)dealloc {
 	[completionHandler release];
 	[refreshHandler release];
 	[receivedData release];
 	[currentToken release];
-	[currentURL release];
+	[currentURLRequest release];
 	[super dealloc];
 }
 
 - (void)connectToURL:(NSURL *)aURL token:(MixioAuthToken *)token refreshHandler:(void(^)(MixioAuthToken *oAuthToken, void(^refreshCompletionHandler)(MixioAuthToken *oAuthToken, NSError* error)))aRefreshHandler completionHandler:(void(^)(NSString* receivedString, NSError *error))aCompletionHandler {
+	[self connectWithRequest:[NSURLRequest requestWithURL:aURL] token:token refreshHandler:aRefreshHandler completionHandler:aCompletionHandler];
+}
+
+- (void)connectWithRequest:(NSURLRequest *)aURLRequest token:(MixioAuthToken *)token 
+	  refreshHandler:(void(^)(MixioAuthToken *oAuthToken, void(^refreshCompletionHandler)(MixioAuthToken *oAuthToken, NSError* error)))aRefreshHandler 
+   completionHandler:(void(^)(NSString* receivedString, NSError *error))aCompletionHandler {
 	
 	if (!token) {
 		if (aCompletionHandler) {
@@ -44,10 +50,10 @@
 		[tokenManager refreshToken:token completionHandler:^(MixioAuthToken *oAuthToken, NSError *error) {
 			if (oAuthToken) {
 				self.currentToken = oAuthToken;
-				[self connectToURL:aURL accessToken:oAuthToken.accessToken refreshHandler:aRefreshHandler completionHandler:aCompletionHandler];
+				[self connectWithRequest:aURLRequest accessToken:oAuthToken.accessToken refreshHandler:aRefreshHandler completionHandler:aCompletionHandler];
 			} else {
 				self.currentToken = token;
-				[self connectToURL:aURL accessToken:token.accessToken refreshHandler:aRefreshHandler completionHandler:aCompletionHandler];
+				[self connectWithRequest:aURLRequest accessToken:token.accessToken refreshHandler:aRefreshHandler completionHandler:aCompletionHandler];
 			}
 			[tokenManager release];
 		}];
@@ -55,10 +61,12 @@
 	}
 	
 	self.currentToken = token;
-	[self connectToURL:aURL accessToken:token.accessToken refreshHandler:aRefreshHandler completionHandler:aCompletionHandler];
+	[self connectWithRequest:aURLRequest accessToken:token.accessToken refreshHandler:aRefreshHandler completionHandler:aCompletionHandler];
 }
 
-- (void)connectToURL:(NSURL *)aURL accessToken:(NSString *)accessToken refreshHandler:(void(^)(MixioAuthToken *oAuthToken, void(^refreshCompletionHandler)(MixioAuthToken *oAuthToken, NSError* error)))aRefreshHandler completionHandler:(void(^)(NSString* receivedString, NSError *error))aCompletionHandler {
+- (void)connectWithRequest:(NSURLRequest *)aURLRequest accessToken:(NSString *)accessToken 
+	  refreshHandler:(void(^)(MixioAuthToken *oAuthToken, void(^refreshCompletionHandler)(MixioAuthToken *oAuthToken, NSError* error)))aRefreshHandler 
+   completionHandler:(void(^)(NSString* receivedString, NSError *error))aCompletionHandler {
 	
 	if (!accessToken) {
 		if (self.completionHandler) {
@@ -69,12 +77,12 @@
 	
 	self.completionHandler = aCompletionHandler;
 	self.refreshHandler = aRefreshHandler;
-	self.currentURL = aURL;
-	NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:aURL];
-	[request setHTTPMethod:@"GET"];
-	[request setValue:[NSString stringWithFormat:@"OAuth %@", accessToken] forHTTPHeaderField:@"Authorization"];
+	self.currentURLRequest = [[aURLRequest mutableCopy] autorelease];
 	
-	NSURLConnection* connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+	[self.currentURLRequest setHTTPMethod:@"GET"];
+	[self.currentURLRequest setValue:[NSString stringWithFormat:@"OAuth %@", accessToken] forHTTPHeaderField:@"Authorization"];
+	
+	NSURLConnection* connection = [[NSURLConnection alloc] initWithRequest:self.currentURLRequest delegate:self];
 	if (connection) {
 		self.receivedData = [NSMutableData data];
 		[connection start];
@@ -106,7 +114,7 @@
 			refreshHandler(currentToken, ^(MixioAuthToken *oAuthToken, NSError* error){
 				if (oAuthToken) {
 					self.currentToken = oAuthToken;
-					[self connectToURL:currentURL accessToken:oAuthToken.accessToken refreshHandler:nil completionHandler:completionHandler];
+					[self connectWithRequest:currentURLRequest accessToken:oAuthToken.accessToken refreshHandler:nil completionHandler:completionHandler];
 				} else {
 					if (self.completionHandler) {
 						completionHandler(nil, error);
