@@ -79,7 +79,6 @@
 	self.refreshHandler = aRefreshHandler;
 	self.currentURLRequest = [[aURLRequest mutableCopy] autorelease];
 	
-	[self.currentURLRequest setHTTPMethod:@"GET"];
 	[self.currentURLRequest setValue:[NSString stringWithFormat:@"OAuth %@", accessToken] forHTTPHeaderField:@"Authorization"];
 	
 	NSURLConnection* connection = [[NSURLConnection alloc] initWithRequest:self.currentURLRequest delegate:self];
